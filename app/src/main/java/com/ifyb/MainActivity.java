@@ -25,13 +25,14 @@ public class MainActivity extends AppCompatActivity {
         fireDatabase = FirebaseDatabase.getInstance();
         databaseReference = fireDatabase.getReference("users");
         userId = databaseReference.push().getKey();
-        User user = new User("Ashish", "1234567890");
+        User user = new User("Ashish", "09303930393039");
         databaseReference.child(userId).setValue(user);
-
+        System.out.println("test");
         databaseReference.child(userId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
+                assert user != null;
                 Log.d(TAG, "User name: " + user.getName() + ", email " + user.getNumber());
             }
 
